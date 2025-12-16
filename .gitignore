@@ -1,0 +1,59 @@
+# Build Results
+bin/
+obj/
+*.exe
+*.dll
+*.pdb
+
+# Visual Studio
+.vs/
+*.user
+*.sln.docstates
+.vscode/
+
+# Build Folders
+Debug/
+Release/
+x86/
+x64/
+
+# NuGet
+*.nupkg
+*.snupkg
+packages/
+.nuget/
+
+# Local test files
+*.log
+*.trx
+TestResults/
+
+# OS Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporary files
+*.tmp
+*.temp
+~*
+*.bak
+*.backup
+
+# IDE
+*.suo
+*.sln.docstates
+.ReSharper/
+_ReSharper*/
+*.resharper
+
+# Project specific
+latestBin/
+bin/Debug/
+bin/Release/
+obj/Debug/
+obj/Release/
+
+# Don't ignore these
+!.gitkeep
+!
