@@ -50,13 +50,28 @@ namespace ClearRecipientList
         {
             try
             {
-                // Combined window: Select devices and notification class objects
-                SelectItemsForm itemsForm = new SelectItemsForm(_yabeFrm);
-                if (itemsForm.ShowDialog() == DialogResult.OK)
+                if (_yabeFrm == null)
                 {
-                    // Execute the clearing operation
-                    ClearRecipientLists(itemsForm.SelectedObjects);
+                    MessageBox.Show("Yabe-Fenster nicht verfügbar.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
+
+                var devices = _yabeFrm.YabeDiscoveredDevices;
+                if (devices == null || devices.Length == 0)
+                {
+                    MessageBox.Show("Keine BACnet-Geräte gefunden. Bitte starten Sie zunächst eine Geräteerkennung.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                SelectItemsForm itemsForm = new SelectItemsForm(_yabeFrm);
+                itemsForm.ShowDialog();
+            }
+            catch (NullReferenceException ex)
+            {
+                MessageBox.Show($"Nullfehler: {ex.Message}\n\n{ex.StackTrace}\n\nBitte stellen Sie sicher, dass Geräte entdeckt wurden.",
+                    "Nullfehler",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
@@ -64,66 +79,6 @@ namespace ClearRecipientList
                     "Plugin Fehler",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-            }
-        }
-
-        private void ClearRecipientLists(System.Collections.Generic.List<ObjectSelection> selectedObjects)
-        {
-            if (selectedObjects.Count == 0)
-            {
-                MessageBox.Show("Keine Objekte ausgewählt.", "Information");
-                return;
-            }
-
-            var progressForm = new ProgressForm();
-            progressForm.Show();
-
-            try
-            {
-                int processed = 0;
-                foreach (var objSel in selectedObjects)
-                {
-                    progressForm.UpdateProgress(processed, selectedObjects.Count,
-                        $"Verarbeite: {objSel.Device.deviceName} - {objSel.ObjectId}");
-
-                    try
-                    {
-                        // Clear the Recipient List by writing an empty list
-                        // PROP_RECIPIENT_LIST = 54
-                        var emptyRecipientList = new System.IO.BACnet.BacnetValue[0];
-
-                        bool success = objSel.Device.channel.WritePropertyRequest(
-                            objSel.Device.BacAdr,
-                            objSel.ObjectId,
-                            System.IO.BACnet.BacnetPropertyIds.PROP_RECIPIENT_LIST,
-                            emptyRecipientList);
-
-                        if (success)
-                        {
-                            System.Diagnostics.Trace.WriteLine($"Erfolgreich geleert: {objSel.Device.deviceName} - {objSel.ObjectId}");
-                        }
-                        else
-                        {
-                            System.Diagnostics.Trace.WriteLine($"Fehler: WriteProperty fehlgeschlagen für {objSel.Device.deviceName} - {objSel.ObjectId}");
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        System.Diagnostics.Trace.WriteLine($"Fehler beim Löschen: {objSel.Device.deviceName} - {objSel.ObjectId}: {ex.Message}");
-                    }
-
-                    processed++;
-                }
-
-                progressForm.Close();
-                MessageBox.Show($"Verarbeitung abgeschlossen: {processed} Objekte verarbeitet.",
-                    "Erfolgreich",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-            }
-            finally
-            {
-                progressForm?.Dispose();
             }
         }
     }
