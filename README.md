@@ -52,3 +52,9 @@ Dieses Plugin ermöglicht es, die Recipient Lists von Notification Class Objekte
    - Yabe neu starten
    - Das Plugin erscheint im Menü: `Plugins` → `Clear Recipient Lists`
    - Falls das Menü nicht erscheint → Berechtigungen überprüfen
+
+
+Lizenz & Kontakt
+Siehe LICENSE im Repository. Für Fragen zum Code bitte Issues/PRs im Repo verwenden.
+
+https://buymeacoffee.com/pedrotepe
