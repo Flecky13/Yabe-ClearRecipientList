@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO.BACnet;
 using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 using Yabe;
 
@@ -27,7 +28,8 @@ namespace ClearRecipientList
 
         private void InitializeComponent()
         {
-            this.Text = "Notification Class Objekte auswählen";
+            var version = Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyFileVersionAttribute>()?.Version ?? "1.0.0.0";
+            this.Text = $"Notification Class Objekte auswählen - v{version}";
             this.Size = new Size(600, 500);
             this.StartPosition = FormStartPosition.CenterParent;
             this.ShowIcon = false;

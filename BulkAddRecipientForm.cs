@@ -1,4 +1,5 @@
 using System;
+using System.Reflection;
 using System.Windows.Forms;
 using System.IO.BACnet;
 using Yabe;
@@ -13,7 +14,8 @@ namespace ClearRecipientList
 
         public BulkAddRecipientForm()
         {
-            this.Text = "Empfänger hinzufügen";
+            var version = Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyFileVersionAttribute>()?.Version ?? "1.0.0.0";
+            this.Text = $"Empfänger hinzufügen - v{version}";
             this.StartPosition = FormStartPosition.CenterParent;
             this.Width = 440;
             this.Height = 520;

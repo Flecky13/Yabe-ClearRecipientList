@@ -1,12 +1,17 @@
 using System;
 using System.Collections.Generic;
-using System.Reflection;
+using System.Reflection;using System.Runtime.InteropServices;
 
-namespace ClearRecipientList
-{
-    static class AssemblyInfo
-    {
-        internal const string Version = "1.0.0.0";
-        internal const string FileVersion = "1.0.0.0";
-    }
-}
+[assembly: AssemblyTitle("ClearRecipientList")]
+[assembly: AssemblyDescription("Yabe Plugin to clear recipient lists")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ClearRecipientList")]
+[assembly: AssemblyCopyright("Copyright © 2026")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+[assembly: ComVisible(false)]
+[assembly: Guid("12345678-1234-1234-1234-123456789012")]
+[assembly: AssemblyVersion("1.0.0.2")]
+[assembly: AssemblyFileVersion("1.0.0.2")]
+// ...existing code...

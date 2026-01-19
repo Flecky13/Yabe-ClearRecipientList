@@ -1,5 +1,6 @@
 using System;
 using System.Drawing;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace ClearRecipientList
@@ -16,7 +17,8 @@ namespace ClearRecipientList
 
         private void InitializeComponent()
         {
-            this.Text = "Verarbeitung läuft...";
+            var version = Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyFileVersionAttribute>()?.Version ?? "1.0.0.0";
+            this.Text = $"Verarbeitung läuft... - v{version}";
             this.Size = new Size(400, 150);
             this.StartPosition = FormStartPosition.CenterParent;
             this.ShowIcon = false;

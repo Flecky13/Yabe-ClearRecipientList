@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO.BACnet;
 using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 using Yabe;
-using System.IO.BACnet;
 
 namespace ClearRecipientList
 {
@@ -26,7 +27,8 @@ namespace ClearRecipientList
 
         private void InitializeComponent()
         {
-            this.Text = "Geräte auswählen";
+            var version = Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyFileVersionAttribute>()?.Version ?? "1.0.0.0";
+            this.Text = $"Geräte auswählen - v{version}";
             this.Size = new Size(500, 400);
             this.StartPosition = FormStartPosition.CenterParent;
             this.ShowIcon = false;
