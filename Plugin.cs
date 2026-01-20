@@ -40,8 +40,7 @@ namespace ClearRecipientList
 
             // Creates the Menu Item
             ToolStripMenuItem menuItem = new ToolStripMenuItem();
-            var version = Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyFileVersionAttribute>()?.Version ?? "1.0.0.0";
-            menuItem.Text = $"Clear Recipient Lists (v{version})";
+            menuItem.Text = "Clear Recipient Lists";
             menuItem.Click += MenuItem_Click;
 
             // Add it as a sub menu (pluginsToolStripMenuItem is the only public Menu member)
