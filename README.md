@@ -39,6 +39,7 @@ Dieses Plugin ermöglicht es, die Recipient Lists von Notification Class Objekte
 3. **Config-Datei erstellen oder anpassen**
    - Prüfe ob `Yabe.exe.config` im Yabe-Verzeichnis existiert
    - **Falls nicht:** Erstelle oder Kopieren diese aus dem Yabe Repository
+         wenn kopiert, Berechtigungen überprüfen, Rechtklich auf .config Eigenschaften -> Tab Allgemein -> Sicherheit Zulassen
    - erweitere die Liste der PlugIns
    ```xml
        <setting name="Plugins" serializeAs="String">
@@ -51,7 +52,7 @@ Dieses Plugin ermöglicht es, die Recipient Lists von Notification Class Objekte
    - Yabe komplett beenden
    - Yabe neu starten
    - Das Plugin erscheint im Menü: `Plugins` → `Clear Recipient Lists`
-   - Falls das Menü nicht erscheint → Berechtigungen überprüfen, Rechtklich auf .dll Tab Allgemein Sicherheit Zulassen
+   - Falls das Menü nicht erscheint → Berechtigungen überprüfen, Rechtklich auf .dll Eigenschaften -> Tab Allgemein -> Sicherheit Zulassen
 
 
 Lizenz & Kontakt
