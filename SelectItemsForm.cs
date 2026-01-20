@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Yabe;
+using ClearRecipientList;
 
 namespace ClearRecipientList
 {
@@ -230,7 +231,7 @@ namespace ClearRecipientList
             var buttonPanel = new TableLayoutPanel
             {
                 Dock = DockStyle.Fill,
-                ColumnCount = 5,
+                ColumnCount = 6,
                 RowCount = 1,
                 Height = 40,
                 Margin = new Padding(0, 10, 0, 0)
@@ -238,6 +239,7 @@ namespace ClearRecipientList
             buttonPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 100));  // Leeren
             buttonPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 120));  // Hinzufügen
             buttonPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));   // Spacer
+            buttonPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 110));  // Hilfe
             buttonPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 110));  // Abbrechen
             buttonPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 110));  // Schließen
 
@@ -262,6 +264,18 @@ namespace ClearRecipientList
             // Spacer
             buttonPanel.Controls.Add(new Label { }, 2, 0);
 
+            var btnHelp = new Button
+            {
+                Text = "Hilfe",
+                Dock = DockStyle.Fill
+            };
+            btnHelp.Click += (s, e) =>
+            {
+                var helpForm = new HelpForm();
+                helpForm.ShowDialog(this);
+            };
+            buttonPanel.Controls.Add(btnHelp, 3, 0);
+
             var btnCancel = new Button
             {
                 Text = "Abbrechen",
@@ -269,7 +283,7 @@ namespace ClearRecipientList
                 Dock = DockStyle.Fill,
                 Margin = new Padding(0, 0, 5, 0)
             };
-            buttonPanel.Controls.Add(btnCancel, 3, 0);
+            buttonPanel.Controls.Add(btnCancel, 4, 0);
 
             var btnClose = new Button
             {
@@ -277,7 +291,7 @@ namespace ClearRecipientList
                 Dock = DockStyle.Fill
             };
             btnClose.Click += (s, e) => Close();
-            buttonPanel.Controls.Add(btnClose, 4, 0);
+            buttonPanel.Controls.Add(btnClose, 5, 0);
 
             mainLayout.Controls.Add(buttonPanel, 0, 2);
             mainLayout.SetColumnSpan(buttonPanel, 2);
